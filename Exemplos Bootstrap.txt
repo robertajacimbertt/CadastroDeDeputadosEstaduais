@@ -1,0 +1,8 @@
+Formulário de cadastro:
+https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_input_group&stacked=h
+
+Icones para o formulário de cadastro:
+https://www.w3schools.com/icons/bootstrap_icons_glyphicons.asp
+
+Status de Erro:
+https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_horizontal_all&stacked=h
