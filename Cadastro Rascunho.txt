@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title></title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-  
-	<div class="container">
-  <h2>Cadastro de Deputado</h2>
- 
 
-<form>
+<div class="container">
+  <h3>Input Groups</h3>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-addon class attaches an icon or help text next to the input field.</p>
+  
+  <form>
   
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -36,7 +36,7 @@
     <div class="radio">
       <label><input type="radio" name="optradio">Option 2</label>
     </div>
-  </div>
+ 	</div>
     
      <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -67,14 +67,14 @@
         <option>4</option>
       </select>
       <br>
-  
+	
     
 
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
       <input id="cidade" type="text" class="form-control" name="cidade" placeholder="Cidade">
       <input id="rua" type="text" class="form-control" name="rua" placeholder="Rua">
-      <input id="numero" type="text" class="form-control" name="numero" placeholder="NÃºmero">    
+      <input id="numero" type="text" class="form-control" name="numero" placeholder="Número">    
     </div>
     
     </div>
@@ -82,9 +82,10 @@
  
       
   </form>
+  <br>
 
+</div>
 
-  </div>
-	
 </body>
 </html>
+
