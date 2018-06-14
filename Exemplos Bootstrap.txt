@@ -1,4 +1,4 @@
-Formulário de cadastro:
+﻿Formulário de cadastro:
 https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_input_group&stacked=h
 
 Icones para o formulário de cadastro:
@@ -6,3 +6,7 @@ https://www.w3schools.com/icons/bootstrap_icons_glyphicons.asp
 
 Status de Erro:
 https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_horizontal_all&stacked=h
+
+
+Link da Descrição do Projeto:
+https://e.edim.co/74309197/RE9mgEjZrTmJzK0d.pdf?response-content-disposition=filename%3D%22Projeto2.pdf%22%3B%20filename%2A%3DUTF-8%27%27Projeto2.pdf&Expires=1528935821&Signature=TpTYh8FEeRGFMWOE~MjDUgPDTq6CeHj5gkBzHxA7eL3HSWOfpML9ENIrljN5p-QqfjjDdpEBm88E7zjq0f8O-P1jURFQInN1CT-lBGzOREvfJlxpZqLOwB6zRbOQYkIYgzlnFp8byrwHzJtUxBgQ1W5PWKJy09w3~0yi4M49y87rq8Njw9XpW2XQlx2YErB-9vA5t9XD0PL9UDNdxjGKKCOoCg8ztjGtqfhLm6xr2EL9IGoZAsBLW7lvIYSx4OnqhcpCmNgjpI45Sz4Da4N2VEbJNy9E7wL312MPEDPU1KaCPLK1pymzrzWQzxJtN90I1TzWyFCctQWvgt~DIFMrww__&Key-Pair-Id=APKAJMSU6JYPN6FG5PBQ
