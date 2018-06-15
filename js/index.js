@@ -17,8 +17,41 @@ $(document).ready(function() {
     function construirCards(candidatos) {
         console.log(candidatos);
         candidatos.forEach((candidato, index) => {
-            // $("#conteudo").append("<div class='w3-card-4' style='width:30%'><header class='w3-container w3-light-grey'><h3>" + candidato.nome + "</h3></header><div class='w3-container'><p>Cadjus: " + candidato.cadjus + "</p><hr><img src='./imagens/employee.svg' alt='Avatar' class='w3-left w3-circle w3-margin-right' style='width:60px'><p>Deputado(a) do estado de " + candidato.estado + ".</p><p> Email de contato: </p><p>" + candidato.email + "</p><br></div><span class='input-group-addon'><i class='glyphicon glyphicon-pencil'></i></span><span class='input-group-addon'><i class='glyphicon glyphicon-trash'></i></span></div>");
+            var card = $('<div>', { id: 'card_' + index, class: 'card' });
+            var img = $('<img class="card-img-top">');
+            img.attr('src', './imagens/employee.svg');
+            var cabecalho = $('<div>', { class: 'card-body' });
+            var titulo = $('');
 
+
+
+            card.append(img);
+            $('#app').append(card);
         });
     }
 });
+
+
+{
+    /*
+    , { class: 'card-img-top', src: './imagens/employee.svg', alt: 'Foto do deputado ' + candidato.nome }
+    
+    <div class="card">
+    <img class="card-img-top" src="./imagens/employee.svg" alt="Card image cap">
+                <div class="card-body">
+
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                        </label>
+                    </div>
+                </div>
+            </div> */
+}
