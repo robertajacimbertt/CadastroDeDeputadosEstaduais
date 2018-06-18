@@ -2,26 +2,8 @@
     /* display: flex; */
 }
 
-hr{
-	width: 3px;
+
+
+.formulario{
+	width: 55%;
 }
-
-
-#formCadastro{
-	background-color: lightblue;
-	width: 50%;
-	
-
-}
-
-div.input-group{
-	padding-right: 150px;
-
-	border-color: red;
-}
-
-label{
-	padding-left: 10px;
-	padding-right: 5px;
-}
-
