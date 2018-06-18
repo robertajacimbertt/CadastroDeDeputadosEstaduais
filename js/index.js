@@ -17,41 +17,34 @@ $(document).ready(function() {
     function construirCards(candidatos) {
         console.log(candidatos);
         candidatos.forEach((candidato, index) => {
+            var nome = candidato.nome ? candidato.nome : "Candidato inválido";
+            var cadjus = candidato.cadjus ? candidato.cadjus : "indisponível";
+            var estado = candidato.estado ? candidato.estado : "indisponível";
+            var email = candidato.email ? candidato.email : "indisponível";
+
             var card = $('<div>', { id: 'card_' + index, class: 'card' });
             var img = $('<img class="card-img-top">');
             img.attr('src', './imagens/employee.svg');
-            var cabecalho = $('<div>', { class: 'card-body' });
-            var titulo = $('');
-
-
-
+            var corpoDoCard = $('<div>', { class: 'card-body' });
+            var titulo = $("<h5 class: 'card-title'>" + nome + "</h5>");
+            var texto = $("<p class='card-text'>Cadjus: " + cadjus + "</p><p>Email: " + email + "</p><p>Estado: " + estado + "</p>");
+            var footer = $('<div>', { class: 'card-footer' });
+            var grupoBotao = $('<div>', { class: 'btn-group btn-group-toggle', "data-toggle": 'buttons' });
+            var labelEditar = $('<label>', { class: 'btn btn-secondary active' });
+            var labelDeletar = $('<label>', { class: 'btn btn-secondary' });
+            var botaoEditar = $("<input type='radio', name='options', id='deletar_" + index + "', autocomplete='off', checked>Editar</input>");
+            var botaoDeletar = $("<input type='radio', name='options', id='editar_" + index + "', autocomplete='off', checked>Deletar</input>");
+            corpoDoCard.append(titulo);
+            corpoDoCard.append(texto);
+            labelEditar.append(botaoEditar);
+            labelDeletar.append(botaoDeletar);
+            grupoBotao.append(labelEditar);
+            grupoBotao.append(labelDeletar);
+            footer.append(grupoBotao);
             card.append(img);
+            card.append(corpoDoCard);
+            card.append(footer);
             $('#app').append(card);
         });
     }
 });
-
-
-{
-    /*
-    , { class: 'card-img-top', src: './imagens/employee.svg', alt: 'Foto do deputado ' + candidato.nome }
-    
-    <div class="card">
-    <img class="card-img-top" src="./imagens/employee.svg" alt="Card image cap">
-                <div class="card-body">
-
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-                <div class="card-footer">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-                        </label>
-                        <label class="btn btn-secondary">
-                          <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-                        </label>
-                    </div>
-                </div>
-            </div> */
-}
