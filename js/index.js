@@ -33,7 +33,7 @@ $(document).ready(function() {
             var labelEditar = $('<label>', { class: 'btn btn-secondary active' });
             var labelDeletar = $('<label>', { class: 'btn btn-secondary' });
             var botaoEditar = $("<input type='radio', name='options', id='deletar_" + index + "', autocomplete='off', checked>Editar</input>");
-            var botaoDeletar = $("<input type='radio', name='options', id='editar_" + index + "', autocomplete='off', checked>Deletar</input>");
+            var botaoDeletar = $("<input type='button', id='editar_" + index + "', onclick='remover()'>Deletar</input>");
             corpoDoCard.append(titulo);
             corpoDoCard.append(texto);
             labelEditar.append(botaoEditar);
@@ -47,4 +47,9 @@ $(document).ready(function() {
             $('#app').append(card);
         });
     }
+
+
 });
+    function remover() {
+        console.log("chamou remover");
+    }
