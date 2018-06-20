@@ -48,6 +48,15 @@
         z-index: 999;
     }
     
+    .botao-criar-fixo:hover {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+        border-radius: 50%;
+        border: solid 2px blue;
+    }
+    
     label {
         padding-top: 15px;
     }
@@ -64,4 +73,10 @@
     
     body {
         background-color: red;
+    }
+    
+    #popup {
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
     }

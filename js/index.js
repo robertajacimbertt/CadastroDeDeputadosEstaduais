@@ -16,9 +16,14 @@ $(document).ready(function() {
         }
     }
 
+    function abrirModal() {
+        $("#popup").trigger('click');
+    }
+
     function construirCards(candidatos) {
+        $("#app").empty();
         candidatos.forEach((candidato, index) => {
-            var nome = candidato.nome ? candidato.nome : "Candidato inválido";
+            var nome = candidato.idcandidato ? candidato.idcandidato : "Candidato inválido";
             var cadjus = candidato.cadjus ? candidato.cadjus : "indisponível";
             var estado = candidato.estado ? candidato.estado : "indisponível";
             var email = candidato.email ? candidato.email : "indisponível";
@@ -57,14 +62,17 @@ $(document).ready(function() {
         console.log(idCandidato);
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://andrebordignon.esy.es/php/deletacandidato.php", true);
+        xhr.open("GET", "http://andrebordignon.esy.es/php/deletacandidato.php?idcandidato=" + idCandidato, true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("537");
+        xhr.send();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(xhr.responseText);
+                abrirModal();
+                buscar();
             }
         }
+
     }
 
     function editar() {
