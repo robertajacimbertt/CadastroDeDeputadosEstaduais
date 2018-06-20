@@ -11,6 +11,7 @@ $(document).ready(function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var candidatos = JSON.parse(xhr.responseText);
                 ListaDeCandidatos = JSON.parse(xhr.responseText);
+                localStorage.setItem('ListaDeCandidatos', xhr.responseText);
                 construirCards(candidatos);
             }
         }
@@ -23,7 +24,7 @@ $(document).ready(function() {
     function construirCards(candidatos) {
         $("#app").empty();
         candidatos.forEach((candidato, index) => {
-            var nome = candidato.idcandidato ? candidato.idcandidato : "Candidato inválido";
+            var nome = candidato.nome ? candidato.nome : "Candidato inválido";
             var cadjus = candidato.cadjus ? candidato.cadjus : "indisponível";
             var estado = candidato.estado ? candidato.estado : "indisponível";
             var email = candidato.email ? candidato.email : "indisponível";
@@ -56,11 +57,7 @@ $(document).ready(function() {
 
     function remover(evento) {
         var numero = evento.target.id.slice(8);
-        var card = "card_" + numero;
         var idCandidato = ListaDeCandidatos[numero].idcandidato;
-
-        console.log(idCandidato);
-
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://andrebordignon.esy.es/php/deletacandidato.php?idcandidato=" + idCandidato, true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -72,11 +69,16 @@ $(document).ready(function() {
                 buscar();
             }
         }
-
     }
 
-    function editar() {
-        console.log("oi");
+    function editar(evento) {
+        var aValue = localStorage.getItem('ListaDeCandidatos');
+        aValue = JSON.parse(aValue);
+        console.log(aValue);
+        // var numero = evento.target.id.slice(7);
+        // var id = ListaDeCandidatos[numero].idcandidato;
+        // var novaURL = "editar.html";
+        // $(window.document.location).attr('href', novaURL + "?id=" + id);
     }
 
 });
