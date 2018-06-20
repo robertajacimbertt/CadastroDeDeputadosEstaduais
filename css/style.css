@@ -58,7 +58,8 @@
     }
     
     .navbar {
-        margin-bottom: 50px;
+        /* margin-bottom: 50px; */
+        margin-top: -16px;
     }
     
     body {
