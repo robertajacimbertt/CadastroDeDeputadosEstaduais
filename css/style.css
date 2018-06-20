@@ -1,49 +1,66 @@
-body {
-    margin: 0 auto;
-    /* max-width: 56em; */
-    padding: 1em 0;
-}
-
-.card-img-top {
-    height: 120px;
-}
-
-#app {
-    background-color: red;
-    display: flex;
-    flex-wrap: wrap;
-    /* Supports Grid */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: minmax(150px, auto);
-    grid-gap: 1em;
-    padding: 30px;
-}
-
-.card {
-    /* display: flex;
+    body {
+        margin: 0 auto;
+        /* max-width: 56em; */
+        padding: 1em 0;
+    }
+    
+    .card-img-top {
+        height: 120px;
+    }
+    
+    #app {
+        background-color: red;
+        display: flex;
+        flex-wrap: wrap;
+        /* Supports Grid */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-rows: minmax(150px, auto);
+        grid-gap: 1em;
+        padding: 30px;
+    }
+    
+    .card {
+        /* display: flex;
     align-items: center;
     justify-content: center;
     height: 300px;
     /*Flex Fallback
     flex: 1 1 200px; */
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-}
-
-.mt-4,
-.my-4 {
-    margin-top: 0px !important;
-    margin-bottom: -20px !important;
-}
-
-.page-footer {
-    background-color: cadetblue;
-}
-
-.botao-criar-fixo {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 999;
-}
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    
+    .mt-4,
+    .my-4 {
+        margin-top: 0px !important;
+        margin-bottom: -20px !important;
+    }
+    
+    .page-footer {
+        background-color: cadetblue;
+    }
+    
+    .botao-criar-fixo {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+    }
+    
+    label {
+        padding-top: 15px;
+    }
+    
+    #formulario {
+        width: 40%;
+        padding-left: 10%;
+    }
+    
+    .navbar {
+        margin-bottom: 50px;
+    }
+    
+    body {
+        background-color: red;
+    }
