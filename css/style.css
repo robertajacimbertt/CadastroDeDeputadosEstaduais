@@ -2,6 +2,7 @@
         margin: 0 auto;
         /* max-width: 56em; */
         padding: 1em 0;
+        background-color: lightblue;
     }
     
     .card-img-top {
@@ -69,10 +70,6 @@
     .navbar {
         /* margin-bottom: 50px; */
         margin-top: -16px;
-    }
-    
-    body {
-        background-color: red;
     }
     
     #popup {

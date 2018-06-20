@@ -15,11 +15,18 @@ $(document).ready(function() {
 
     buscar();
 
+    $('#btEnviar').click(function(event) {
+        cadastrar();
+    });
+
     function cadastrar() {
+        
+        console.log("chamou o cadastrar");
         var candidato = {
             nome: '',
             sexo: '',
             cpf: '',
+            datanasc: '',
             estado: '',
             cidade: '',
             bairro: '',
@@ -30,9 +37,10 @@ $(document).ready(function() {
             senha: ''
         };
         candidato.nome = $("#nome").val();
-        candidato.sexo = $("#sexo").val();
+        candidato.sexo = $("input[name='sexo']:checked").val();
         candidato.email = $("#email").val();
         candidato.senha = $("#senha").val();
+        candidato.datanasc = $("#datanasc").val();
         candidato.estado = $("#estado").val();
         candidato.cidade = $("#cidade").val();
         candidato.bairro = $("#bairro").val();
@@ -41,15 +49,19 @@ $(document).ready(function() {
         candidato.cadjus = $("#cadjus").val();
         candidato.cpf = $("#cpf").val();
 
+        console.log("teste candidato =", candidato);
+        var string = "nome="+candidato.nome+", sexo="+candidato.sexo;
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "http://andrebordignon.esy.es/php/incluicandidato.php", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(candidato);
+        xhr.send(string);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(xhr.responseText);
             }
         }
+        buscar();
+
 
         // $.ajax({
         //         method: "POST",
