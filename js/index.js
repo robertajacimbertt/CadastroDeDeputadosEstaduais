@@ -1,3 +1,5 @@
+var ListaDeCandidatos = [];
+
 $(document).ready(function() {
     buscar();
 
@@ -8,14 +10,13 @@ $(document).ready(function() {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var candidatos = JSON.parse(xhr.responseText);
-                console.log(JSON.parse(xhr.responseText));
+                ListaDeCandidatos = JSON.parse(xhr.responseText);
                 construirCards(candidatos);
             }
         }
     }
 
     function construirCards(candidatos) {
-        console.log(candidatos);
         candidatos.forEach((candidato, index) => {
             var nome = candidato.nome ? candidato.nome : "Candidato inválido";
             var cadjus = candidato.cadjus ? candidato.cadjus : "indisponível";
@@ -30,16 +31,16 @@ $(document).ready(function() {
             var texto = $("<p class='card-text'>Cadjus: " + cadjus + "</p><p>Email: " + email + "</p><p>Estado: " + estado + "</p>");
             var footer = $('<div>', { class: 'card-footer' });
             var grupoBotao = $('<div>', { class: 'btn-group btn-group-toggle', "data-toggle": 'buttons' });
-            var labelEditar = $('<label>', { class: 'btn btn-secondary active' });
-            var labelDeletar = $('<label>', { class: 'btn btn-secondary' });
-            var botaoEditar = $("<input type='radio', name='options', id='deletar_" + index + "', autocomplete='off', checked>Editar</input>");
-            var botaoDeletar = $("<input type='radio', name='options', id='editar_" + index + "', autocomplete='off', checked>Deletar</input>");
+            var botaoRemover = $('<button>', { id: 'remover_' + index, class: 'btn btn-link', type: 'button' });
+            var botaoEditar = $('<button>', { id: 'editar_' + index, class: 'btn btn-primary', type: 'button' });
+            botaoRemover.text("Remover");
+            botaoEditar.text("Editar");
+            botaoRemover.on("click", remover);
+            botaoEditar.on("click", editar);
             corpoDoCard.append(titulo);
             corpoDoCard.append(texto);
-            labelEditar.append(botaoEditar);
-            labelDeletar.append(botaoDeletar);
-            grupoBotao.append(labelEditar);
-            grupoBotao.append(labelDeletar);
+            grupoBotao.append(botaoEditar);
+            grupoBotao.append(botaoRemover);
             footer.append(grupoBotao);
             card.append(img);
             card.append(corpoDoCard);
@@ -47,4 +48,27 @@ $(document).ready(function() {
             $('#app').append(card);
         });
     }
+
+    function remover(evento) {
+        var numero = evento.target.id.slice(8);
+        var card = "card_" + numero;
+        var idCandidato = ListaDeCandidatos[numero].idcandidato;
+
+        console.log(idCandidato);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://andrebordignon.esy.es/php/deletacandidato.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("537");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+            }
+        }
+    }
+
+    function editar() {
+        console.log("oi");
+    }
+
 });
