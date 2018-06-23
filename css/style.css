@@ -63,12 +63,17 @@
     }
     
     #formulario {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: -24px;
+    }
+    
+    .form-group {
         width: 50%;
         margin: 0 auto;
     }
     
     .navbar {
-        /* margin-bottom: 50px; */
         margin-top: -16px;
     }
     
@@ -76,4 +81,32 @@
         width: 0px;
         height: 0px;
         visibility: hidden;
+    }
+    
+    .divisao,
+    hr {
+        padding-left: 10%;
+        color: red;
+        font-size: 16pt;
+        margin: 0 auto;
+        width: 70%;
+    }
+    
+    #secao1 {
+        background-color: teal;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    
+    #secao2 {
+        background-color: aquamarine;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    
+    #secao3 {
+        background-color: black;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        text-align: center;
     }

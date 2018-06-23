@@ -1,6 +1,6 @@
-var ListaDeCandidatos = [];
-
 $(document).ready(function() {
+    var ListaDeCandidatos = [];
+
     buscar();
 
     function buscar() {
