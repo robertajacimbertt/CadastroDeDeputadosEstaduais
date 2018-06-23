@@ -10,6 +10,7 @@ $(document).ready(function() {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 localStorage.setItem('ListaDeCandidatos', xhr.responseText);
+                console.log(xhr.responseText)
                 ListaDeCandidatos = JSON.parse(xhr.responseText);
                 construirCards(ListaDeCandidatos);
             }
