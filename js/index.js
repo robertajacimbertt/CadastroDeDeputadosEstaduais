@@ -16,7 +16,7 @@ $(document).ready(function() {
                 ListaDeCandidatos = JSON.parse(xhr.responseText);
                 if (ListaDeCandidatos.length > 0) {
                     localStorage.setItem('ListaDeCandidatos', xhr.responseText);
-                    console.log(xhr.responseText)
+                    // console.log(xhr.responseText)
                     construirCards(ListaDeCandidatos);
                 } else {
                     errorLog();
@@ -50,7 +50,7 @@ $(document).ready(function() {
             var card = $('<div>', { id: 'card_' + index, class: 'card' });
             var img = $('<img class="card-img-top">');
             img.attr('src', './imagens/employee.svg');
-            var corpoDoCard = $('<div>', { class: 'card-body' });
+            var corpoDoCard = $('<div>', { class: 'card-body', id: 'cardbody_' + index });
             var titulo = $("<h5 class: 'card-title'>" + nome + "</h5>");
             var texto = $("<p class='card-text'>Cadjus: " + cadjus + "</p><p>Idade: " + idade + "</p><p>Estado: " + estado + "</p>");
             var footer = $('<div>', { class: 'card-footer' });
@@ -61,13 +61,14 @@ $(document).ready(function() {
             botaoEditar.text("Editar");
             botaoRemover.on("click", remover);
             botaoEditar.on("click", editar);
+            corpoDoCard.on("click", detalhar);
             corpoDoCard.append(titulo);
             corpoDoCard.append(texto);
             grupoBotao.append(botaoEditar);
             grupoBotao.append(botaoRemover);
             footer.append(grupoBotao);
             card.append(img);
-            var a = $('<a>', { id: 'linkCard', href: 'index.html' });
+            var a = $('<a>', { id: 'linkCard' });
             a.append(corpoDoCard);
             card.append(a);
             card.append(footer);
@@ -106,6 +107,14 @@ $(document).ready(function() {
         var numero = evento.target.id.slice(7);
         var id = ListaDeCandidatos[numero].idcandidato;
         var novaURL = "editar.html";
+        $(window.document.location).attr('href', novaURL + "?id=" + id);
+    }
+
+    function detalhar(evento) {
+        var numero = evento.currentTarget.id.slice(9);
+        console.log(evento.currentTarget.id, numero);
+        var id = ListaDeCandidatos[numero].idcandidato;
+        var novaURL = "detalhes.html";
         $(window.document.location).attr('href', novaURL + "?id=" + id);
     }
 
