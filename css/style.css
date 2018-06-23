@@ -111,3 +111,17 @@
         text-align: center;
         margin-bottom: -48px;
     }
+    
+    #capa {
+        background-image: url('../imagens/capa.jpg');
+        filter: grayscale(70%);
+        background-repeat: no-repeat;
+        width: 100%;
+        background-size: cover;
+        color: white;
+    }
+    
+    #linkCard {
+        text-decoration: none;
+        color: black;
+    }
