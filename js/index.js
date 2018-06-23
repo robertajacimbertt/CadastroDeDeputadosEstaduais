@@ -9,10 +9,9 @@ $(document).ready(function() {
         xhr.send();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                var candidatos = JSON.parse(xhr.responseText);
-                ListaDeCandidatos = JSON.parse(xhr.responseText);
                 localStorage.setItem('ListaDeCandidatos', xhr.responseText);
-                construirCards(candidatos);
+                ListaDeCandidatos = JSON.parse(xhr.responseText);
+                construirCards(ListaDeCandidatos);
             }
         }
     }
@@ -64,7 +63,6 @@ $(document).ready(function() {
         xhr.send();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText);
                 abrirModal();
                 buscar();
             }
@@ -72,13 +70,10 @@ $(document).ready(function() {
     }
 
     function editar(evento) {
-        var aValue = localStorage.getItem('ListaDeCandidatos');
-        aValue = JSON.parse(aValue);
-        console.log(aValue);
-        // var numero = evento.target.id.slice(7);
-        // var id = ListaDeCandidatos[numero].idcandidato;
-        // var novaURL = "editar.html";
-        // $(window.document.location).attr('href', novaURL + "?id=" + id);
+        var numero = evento.target.id.slice(7);
+        var id = ListaDeCandidatos[numero].idcandidato;
+        var novaURL = "editar.html";
+        $(window.document.location).attr('href', novaURL + "?id=" + id);
     }
 
 });
