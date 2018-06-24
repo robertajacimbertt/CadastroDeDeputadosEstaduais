@@ -28,5 +28,20 @@ $(document).ready(function() {
 
     function preencher(candidato) {
         console.log(candidato);
+        //constroi aside
+        document.getElementById("nome").textContent = candidato.nome;
+        $('#idade').text(getIdade(candidato.datanasc) + ' anos de idade');
+        $('#contato').text('Contato pelo email: ' + candidato.email);
+    }
+
+    function getIdade(nasc) {
+        var dataNasc = nasc.toString();
+        var anoNasc = dataNasc.slice(0, 4);
+        var data = new Date();
+        var anoAtual = data.getFullYear();
+        var idade = anoAtual - anoNasc
+        if (idade <= 0 || idade >= 150) {
+            return "indisponível";
+        } else { return idade; }
     }
 });

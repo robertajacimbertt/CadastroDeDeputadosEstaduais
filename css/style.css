@@ -125,3 +125,34 @@
         text-decoration: none;
         color: black;
     }
+    
+    .row.content {
+        height: 1500px
+    }
+    /* Set gray background color and 100% height */
+    
+    .sidenav {
+        background-color: #f1f1f1;
+        height: 100%;
+        padding-top: 10px;
+        border-top: 9px green solid;
+        border-bottom: 9px red solid;
+    }
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    
+    @media screen and (max-width: 767px) {
+        .sidenav {
+            height: auto;
+            padding: 15px;
+            border-top: 9px green solid;
+            border-bottom: 9px red solid;
+        }
+        .row.content {
+            height: auto;
+        }
+    }
+    
+    #foto {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
