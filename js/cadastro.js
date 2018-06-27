@@ -1,9 +1,25 @@
 var candidatosLista = '';
 $(document).ready(function() {
 
+
+
     // desabilita o select cidades e estados enquanto não forem populados
     $("#cidades").attr("disabled", "disable");
     $("#estados").attr("disabled", "disable");
+    $('#validaNome').hide();
+
+    $('#nome').focusout(function(){
+
+        var varNome = $('#nome').val();
+        if(varNome.length>255 || varNome.length<=0){
+            $('#validaNome').show();
+        } else {
+            $('#validaNome').hide();
+        }
+
+
+    });
+
 
     // efetua a busca de estados da federação
     buscarEstados();
