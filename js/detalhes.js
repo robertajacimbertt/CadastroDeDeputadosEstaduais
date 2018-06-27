@@ -29,9 +29,26 @@ $(document).ready(function() {
     function preencher(candidato) {
         console.log(candidato);
         //constroi aside
-        document.getElementById("nome").textContent = candidato.nome;
-        $('#idade').text(getIdade(candidato.datanasc) + ' anos de idade');
+        document.getElementById("nome").textContent = candidato.idcandidato;
+        var idade = getIdade(candidato.datanasc);
+        if (idade === 'indisponível') {
+            $('#idade').text('Idade ' + idade);
+        } else {
+            $('#idade').text(idade + ' anos de idade');
+        }
         $('#contato').text('Contato pelo email: ' + candidato.email);
+        $('#cadjus').text('CADJUS: ' + candidato.cadjus);
+        $('#cpf').text(candidato.cpf || 'Indisponível');
+        $('#dataNascimento').text(candidato.datanasc);
+        $('#sexo').text(candidato.sexo);
+        $('#estado').text(candidato.estado);
+        $('#cidade').text(candidato.cidade);
+        $('#rua').text(candidato.rua);
+        $('#numero').text(candidato.numero);
+
+        $('#historico').text("Não cadastrado");
+        $('#projetos').text("Não cadastrado");
+        $('#propostas').text("Não cadastrado");
     }
 
     function getIdade(nasc) {

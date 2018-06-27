@@ -179,11 +179,11 @@
     /* Set gray background color and 100% height */
     
     .sidenav {
-        background-color: #f1f1f1;
+        background-color: #7a9d96;
         height: 100%;
         padding-top: 10px;
-        border-top: 9px green solid;
-        border-bottom: 9px red solid;
+        border-top: 9px #dcae1d solid;
+        border-bottom: 9px #dcae1d solid;
     }
     /* On small screens, set height to 'auto' for sidenav and grid */
     
@@ -202,4 +202,12 @@
     #foto {
         margin-left: 15%;
         margin-right: 15%;
+    }
+    
+    .container-fluid {
+        margin-bottom: -24px;
+    }
+    
+    .col-sm-6 {
+        margin-top: 20px;
     }
