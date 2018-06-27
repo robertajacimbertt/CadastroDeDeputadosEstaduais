@@ -212,7 +212,8 @@
         margin-top: 20px;
     }
     
-    #validaNome,
-    #validaCpf {
+    .validacao {
         color: red;
+        font-size: 16px;
+        font-family: arial;
     }

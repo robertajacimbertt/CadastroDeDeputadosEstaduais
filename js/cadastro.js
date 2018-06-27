@@ -14,18 +14,8 @@ $(document).ready(function() {
         validaNome();
     });
 
-    $('#datanasc').focusout(function(){
-        var pegaData = $('#datanasc').val();
-        var dataNasc = new Date(pegaData);
-        var hoje = new Date();
-        var anoNasc = new Date(hoje-dataNasc);
-        var idade = anoNasc.getUTCFullYear() - 1970;
-        
-        if (idade<18) {
-            $('#validaIdade').show();
-        } else{
-            $('#validaIdade').hide();
-        }
+    $('#datanasc').focusout(function() {
+        validaIdade();
     });
 
     $('#cpf').focusout(function() {
@@ -235,5 +225,32 @@ function validaNome() {
     } else {
         $('#validaNome').hide();
         return true;
+    }
+}
+
+function validaIdade(){
+    var valorData = $('#datanasc').val();
+    if (valorData=='') {
+            $('#validaIdade').text("Data de Nascimento é obrigatório!");
+            $('#validaIdade').show();
+            return false;
+        } else {
+        var dataNasc = new Date(valorData);
+        var hoje = new Date();
+        var anoNasc = new Date(hoje-dataNasc);
+        var idade = anoNasc.getUTCFullYear() - 1970;
+        
+        if (idade<18) {
+            $('#validaIdade').text("O Candidato deve ter no mínimo 18 anos!");
+            $('#validaIdade').show();
+            return false;
+        } else if (idade>125) {
+            $('#validaIdade').text("Digite uma data válida!");
+            $('#validaIdade').show();
+            return false;
+        } else{
+            $('#validaIdade').hide();
+            return true;
+        }
     }
 }
