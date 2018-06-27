@@ -7,6 +7,7 @@ $(document).ready(function() {
     $("#cidades").attr("disabled", "disable");
     $("#estados").attr("disabled", "disable");
     $('#validaNome').hide();
+    $('#validaIdade').hide();
 
     $('#nome').focusout(function(){
 
@@ -16,8 +17,21 @@ $(document).ready(function() {
         } else {
             $('#validaNome').hide();
         }
+    });
 
 
+    $('#datanasc').focusout(function(){
+        var pegaData = $('#datanasc').val();
+        var dataNasc = new Date(pegaData);
+        var hoje = new Date();
+        var anoNasc = new Date(hoje-dataNasc);
+        var idade = anoNasc.getUTCFullYear() - 1970;
+        
+        if (idade<18) {
+            $('#validaIdade').show();
+        } else{
+            $('#validaIdade').hide();
+        }
     });
 
 
