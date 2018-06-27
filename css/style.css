@@ -213,6 +213,7 @@
     }
     
     #validaNome,
-    #validaCpf {
+    #validaCpf,
+    #validaSenha {
         color: red;
     }

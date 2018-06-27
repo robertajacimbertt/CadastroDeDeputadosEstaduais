@@ -8,6 +8,7 @@ $(document).ready(function() {
     $("#estados").attr("disabled", "disable");
     $('#validaNome').hide();
     $('#validaCpf').hide();
+    $('#validaSenha').hide();
 
     $('#nome').focusout(function() {
         validaNome();
@@ -17,6 +18,18 @@ $(document).ready(function() {
         validaCpf();
     });
 
+    var temSenha1 = false,
+        temSenha2 = false;
+
+    $('#senha').focusout(function() {
+        temSenha1 = true;
+        validaSenha(temSenha1, temSenha2);
+    });
+
+    $('#senha2').focusout(function() {
+        temSenha2 = true;
+        validaSenha(temSenha1, temSenha2);
+    });
 
     // efetua a busca de estados da federação
     buscarEstados();
@@ -220,5 +233,20 @@ function validaNome() {
     } else {
         $('#validaNome').hide();
         return true;
+    }
+}
+
+function validaSenha(temSenha1, temSenha2) {
+    if ((temSenha1) && (temSenha2)) {
+        var senha1 = $('#senha').val();
+        var senha2 = $('#senha2').val();
+
+        if (senha1 === senha2) {
+            $('#validaSenha').hide();
+            return true;
+        } else {
+            $('#validaSenha').show();
+            return false;
+        }
     }
 }
