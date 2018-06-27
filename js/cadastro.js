@@ -11,12 +11,7 @@ $(document).ready(function() {
     $('#validaCpf').hide();
 
     $('#nome').focusout(function() {
-        var varNome = $('#nome').val();
-        if (varNome.length > 255 || varNome.length <= 0) {
-            $('#validaNome').show();
-        } else {
-            $('#validaNome').hide();
-        }
+        validaNome();
     });
 
     $('#datanasc').focusout(function(){
@@ -34,13 +29,7 @@ $(document).ready(function() {
     });
 
     $('#cpf').focusout(function() {
-        var cpf = $('#cpf').val();
-        if (!validaCpf(cpf)) {
-            $('#validaCpf').show();
-        } else {
-            $('#validaCpf').hide();
-
-        }
+        validaCpf();
     });
 
 
@@ -102,15 +91,6 @@ $(document).ready(function() {
         }
         buscar();
 
-
-        // $.ajax({
-        //         method: "POST",
-        //         url: "http://andrebordignon.esy.es/php/incluicandidato.php",
-        //         data: { nome: "John", cpf: "12785764", datanasc: "1999-09-12", sexo: "f", email: "ro@gmail.com", senha: "senha123", cadjus: "322343", estado: "sp", cidade: "campinas", bairro: "jnlj", rua: "do nada", numero: "10" }
-        //     })
-        //     .done(function(msg) {
-        //         alert("Data Saved: " + msg);
-        //     });
     }
 
     function buscar() {
@@ -213,23 +193,47 @@ function buscarCidades() {
     }
 }
 
-function validaCpf(strCPF) {
-    var Soma;
-    var Resto;
-    Soma = 0;
-    if (strCPF == "00000000000") return false;
+function validaCpf() {
 
-    for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
-    Resto = (Soma * 10) % 11;
+    var cpf = $('#cpf').val();
+    if (!validar(cpf)) {
+        $('#validaCpf').show();
+        return false;
+    } else {
+        $('#validaCpf').hide();
+        return true;
+    }
 
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+    function validar(strCPF) {
+        var Soma;
+        var Resto;
+        Soma = 0;
+        if (strCPF == "00000000000") return false;
 
-    Soma = 0;
-    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
+        for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11))) return false;
-    return true;
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+        return true;
+    }
+
+}
+
+function validaNome() {
+    var varNome = $('#nome').val();
+    if (varNome.length > 255 || varNome.length <= 0) {
+        $('#validaNome').show();
+        return false;
+    } else {
+        $('#validaNome').hide();
+        return true;
+    }
 }
