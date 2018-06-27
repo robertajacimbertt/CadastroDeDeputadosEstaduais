@@ -40,11 +40,11 @@ $(document).ready(function() {
         $('#cadjus').text('CADJUS: ' + candidato.cadjus);
         $('#cpf').text(candidato.cpf || 'Indisponível');
         $('#dataNascimento').text(candidato.datanasc);
-        $('#sexo').text(candidato.sexo);
-        $('#estado').text(candidato.estado);
-        $('#cidade').text(candidato.cidade);
-        $('#rua').text(candidato.rua);
-        $('#numero').text(candidato.numero);
+        $('#sexo').text(candidato.sexo || 'Indisponível');
+        $('#estado').text(candidato.estado || 'Indisponível');
+        $('#cidade').text(candidato.cidade || 'Indisponível');
+        $('#rua').text(candidato.rua || 'Indisponível');
+        $('#numero').text(candidato.numero || 'Indisponível');
 
         $('#historico').text("Não cadastrado");
         $('#projetos').text("Não cadastrado");
