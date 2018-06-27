@@ -7,25 +7,30 @@ $(document).ready(function() {
     $("#cidades").attr("disabled", "disable");
     $("#estados").attr("disabled", "disable");
     $('#validaNome').hide();
+    $('#validaCpf').hide();
 
-    $('#nome').focusout(function(){
-
+    $('#nome').focusout(function() {
         var varNome = $('#nome').val();
-        if(varNome.length>255 || varNome.length<=0){
+        if (varNome.length > 255 || varNome.length <= 0) {
             $('#validaNome').show();
         } else {
             $('#validaNome').hide();
         }
+    });
 
-
+    $('#cpf').focusout(function() {
+        var cpf = $('#cpf').val();
+        if (!validaCpf(cpf)) {
+            $('#validaCpf').show();
+        } else {
+            $('#validaCpf').hide();
+        }
     });
 
 
     // efetua a busca de estados da federação
     buscarEstados();
-    var strCPF = "10800080807";
-    alert(TestaCPF(strCPF));
-    console.log(TestaCPF(strCPF));
+
 
     // quando houver uma mudança no select de estados...
     $('#estados').change(function(event) {
@@ -192,7 +197,7 @@ function buscarCidades() {
     }
 }
 
-function TestaCPF(strCPF) {
+function validaCpf(strCPF) {
     var Soma;
     var Resto;
     Soma = 0;
