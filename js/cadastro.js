@@ -9,6 +9,8 @@ $(document).ready(function() {
     $('#validaNome').hide();
     $('#validaIdade').hide();
     $('#validaCpf').hide();
+    $('#validaCadjus').hide();
+
 
     $('#nome').focusout(function() {
         validaNome();
@@ -21,6 +23,11 @@ $(document).ready(function() {
     $('#cpf').focusout(function() {
         validaCpf();
     });
+
+    $('#cadjus').focusout(function() {
+        validarCadjus();
+    });
+
 
 
     // efetua a busca de estados da federação
@@ -252,5 +259,17 @@ function validaIdade(){
             $('#validaIdade').hide();
             return true;
         }
+    }
+}
+
+function validarCadjus(){
+    var valorCadjus = $('#cadjus').val();
+    if (valorCadjus<1 || valorCadjus>5000) {
+       $('#validaCadjus').text('CadJus deve ser um número entre 1 e 5000!');
+       $('#validaCadjus').show();
+       return false;
+    } else {
+        $('#validaCadjus').hide();
+        return true;
     }
 }
