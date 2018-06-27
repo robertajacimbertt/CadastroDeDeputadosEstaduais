@@ -19,7 +19,8 @@
         border-radius: 0px;
     }
     
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-primary:active {
         background-color: #c49704;
     }
     
@@ -27,7 +28,8 @@
         color: #7a9d96;
     }
     
-    .btn-link:hover {
+    .btn-link:hover,
+    .btn-link:active {
         color: #529e8f;
     }
     
@@ -101,12 +103,19 @@
     }
     
     .navbar {
-        background-color: #00303f !important;
+        /* background-color: #00303f !important; */
         margin-top: -16px;
     }
     
+    #menu {
+        background-color: #00303f !important;
+        color: white !important;
+    }
+    
     .navbar-brand,
-    .navbar-light {
+    .navbar-light,
+    .navbar-expand-lg {
+        background-color: #00303f !important;
         color: white !important;
     }
     
@@ -119,30 +128,35 @@
     .divisao,
     hr {
         padding-left: 10%;
-        color: red;
+        color: rgb(77, 77, 77);
         font-size: 16pt;
         margin: 0 auto;
         width: 70%;
     }
     
     #secao1 {
-        background-color: teal;
+        background-color: #dcae1d;
         padding-bottom: 10px;
         padding-top: 10px;
     }
     
     #secao2 {
-        background-color: aquamarine;
+        background-color: #cae4db;
         padding-bottom: 10px;
         padding-top: 10px;
     }
     
     #secao3 {
-        background-color: black;
+        background-color: #cae4db;
         padding-bottom: 10px;
         padding-top: 10px;
         text-align: center;
         margin-bottom: -48px;
+    }
+    
+    #secao3>button {
+        background-color: #7a9d96;
+        border-color: #7a9d96;
     }
     
     #capa {
