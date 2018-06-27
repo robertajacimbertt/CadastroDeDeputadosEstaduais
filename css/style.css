@@ -2,15 +2,37 @@
         margin: 0 auto;
         /* max-width: 56em; */
         padding: 1em 0;
-        background-color: lightblue;
+        background-color: #00303f;
+    }
+    
+    .card-deck {
+        background-color: #00303f;
     }
     
     .card-img-top {
         height: 120px;
     }
     
+    .btn-primary {
+        background-color: #dcae1d;
+        border: none;
+        border-radius: 0px;
+    }
+    
+    .btn-primary:hover {
+        background-color: #c49704;
+    }
+    
+    .btn-link {
+        color: #7a9d96;
+    }
+    
+    .btn-link:hover {
+        color: #529e8f;
+    }
+    
     #app {
-        background-color: red;
+        background-color: #cae4db;
         display: flex;
         flex-wrap: wrap;
         display: grid;
@@ -39,7 +61,12 @@
     }
     
     .page-footer {
-        background-color: cadetblue;
+        background-color: #00303f;
+        color: rgb(199, 196, 196);
+    }
+    
+    li>a {
+        color: rgb(199, 196, 196) !important;
     }
     
     .botao-criar-fixo {
@@ -55,7 +82,7 @@
         right: 30px;
         z-index: 999;
         border-radius: 50%;
-        border: solid 2px blue;
+        border: solid 2px #c49704;
     }
     
     label {
@@ -74,7 +101,13 @@
     }
     
     .navbar {
+        background-color: #00303f !important;
         margin-top: -16px;
+    }
+    
+    .navbar-brand,
+    .navbar-light {
+        color: white !important;
     }
     
     #popup {
