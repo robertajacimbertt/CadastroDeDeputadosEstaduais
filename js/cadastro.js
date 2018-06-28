@@ -11,6 +11,7 @@ $(document).ready(function() {
     $('#validaCpf').hide();
     $('#validaCadjus').hide();
     $('#validaSenha').hide();
+
     $('#nome').focusout(function() {
         validaNome();
     });
