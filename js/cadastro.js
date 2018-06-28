@@ -41,7 +41,8 @@ $(document).ready(function() {
 
     buscar();
 
-    $('#btEnviar').click(function(event) {
+    $('#enviar').click(function(event) {
+         console.log("chamou o clicar");
         cadastrar();
     });
 
@@ -55,7 +56,6 @@ $(document).ready(function() {
             datanasc: '',
             estado: '',
             cidade: '',
-            bairro: '',
             rua: '',
             numero: '',
             cadjus: '',
@@ -67,25 +67,55 @@ $(document).ready(function() {
         candidato.email = $("#email").val();
         candidato.senha = $("#senha").val();
         candidato.datanasc = $("#datanasc").val();
-        candidato.estado = $("#estado").val();
-        candidato.cidade = $("#cidade").val();
-        candidato.bairro = $("#bairro").val();
+        candidato.estado = $("#estados").val();
+        candidato.cidade = $("#cidades").val();
         candidato.rua = $("#rua").val();
         candidato.numero = $("#numero").val();
         candidato.cadjus = $("#cadjus").val();
         candidato.cpf = $("#cpf").val();
 
         console.log("teste candidato =", candidato);
-        var string = "nome=" + candidato.nome + ", sexo=" + candidato.sexo;
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://andrebordignon.esy.es/php/incluicandidato.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(string);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText);
-            }
-        }
+        
+        var string = { "nome": "asddsa", "sexo": "m", "datanasc": "1998-07-25", "rua": "asd", "numero": "123", "cidade": "Acrelndia", "estado": "AC", "cpf": "90932061095", "cadjus": "2443", "email": "asd", "senha": "asd"};
+
+        var string2 = candidato;
+
+        $.ajax({
+            url: "http://andrebordignon.esy.es/php/incluicandidato.php",
+            type: 'post',
+            data: {
+            nome: candidato.nome,
+            email: candidato.email,
+            senha : candidato.senha,
+            cadjus: candidato.cadjus,
+            cidade: candidato.cidade,
+            estado: candidato.estado,
+            cpf: candidato.cpf,
+            numero: candidato.numero,
+            rua: candidato.rua,
+            sexo: candidato.sexo,
+            dataNasc: candidato.datanasc
+            },beforeSend:function(){
+                console.log("Enviando dados...");
+                }
+            })
+            .done(function() {
+            console.log("Dados enviados com sucesso!");
+            })
+            .fail(function(jqXHR) {
+            console.log("Os dados não foram enviados!");
+        });
+
+
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", "http://andrebordignon.esy.es/php/incluicandidato.php", true);
+        // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhr.send(string2);
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         console.log(xhr.responseText);
+        //     }
+        // }
         buscar();
 
     }
