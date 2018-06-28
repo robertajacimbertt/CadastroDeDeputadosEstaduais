@@ -10,8 +10,7 @@ $(document).ready(function() {
     $('#validaIdade').hide();
     $('#validaCpf').hide();
     $('#validaCadjus').hide();
-
-
+    $('#validaSenha').hide();
     $('#nome').focusout(function() {
         validaNome();
     });
@@ -29,6 +28,18 @@ $(document).ready(function() {
     });
 
 
+    var temSenha1 = false,
+        temSenha2 = false;
+
+    $('#senha').focusout(function() {
+        temSenha1 = true;
+        validaSenha(temSenha1, temSenha2);
+    });
+
+    $('#senha2').focusout(function() {
+        temSenha2 = true;
+        validaSenha(temSenha1, temSenha2);
+    });
 
     // efetua a busca de estados da federação
     buscarEstados();
@@ -265,27 +276,42 @@ function validaNome() {
     }
 }
 
-function validaIdade(){
-    var valorData = $('#datanasc').val();
-    if (valorData=='') {
-            $('#validaIdade').text("Data de Nascimento é obrigatório!");
-            $('#validaIdade').show();
-            return false;
+function validaSenha(temSenha1, temSenha2) {
+    if ((temSenha1) && (temSenha2)) {
+        var senha1 = $('#senha').val();
+        var senha2 = $('#senha2').val();
+
+        if (senha1 === senha2) {
+            $('#validaSenha').hide();
+            return true;
         } else {
+            $('#validaSenha').show();
+            return false;
+        }
+    }
+}
+
+function validaIdade() {
+    var valorData = $('#datanasc').val();
+    if (valorData == '') {
+        $('#validaIdade').text("Data de Nascimento é obrigatório!");
+        $('#validaIdade').show();
+        return false;
+    } else {
         var dataNasc = new Date(valorData);
         var hoje = new Date();
-        var anoNasc = new Date(hoje-dataNasc);
+        var anoNasc = new Date(hoje - dataNasc);
         var idade = anoNasc.getUTCFullYear() - 1970;
-        
-        if (idade<18) {
+
+        if (idade < 18) {
             $('#validaIdade').text("O Candidato deve ter no mínimo 18 anos!");
             $('#validaIdade').show();
             return false;
-        } else if (idade>125) {
+        } else if (idade > 125) {
             $('#validaIdade').text("Digite uma data válida!");
             $('#validaIdade').show();
             return false;
-        } else{
+        } else {
             $('#validaIdade').hide();
             return true;
         }
