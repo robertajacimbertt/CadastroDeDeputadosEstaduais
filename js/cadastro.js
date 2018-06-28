@@ -61,8 +61,48 @@ $(document).ready(function() {
     buscar();
 
     $('#enviar').click(function(event) {
-        if((validaSenha()) && (validaEmail()) && (validaIdade()) && (validaCpf()) && (validaNome()) && (validarCadjus())){
-            console.log("dsijsdj");
+        var validado = -1;
+
+        if (validaNome()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaSenha()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaEmail()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaIdade()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaCpf()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validarCadjus()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        console.log("validado === "+validado);
+
+        if(validado==0){
+            console.log("cadastrou");
         cadastrar();    
         } else{
             alert("Verifique os campos antes de submeter!");
