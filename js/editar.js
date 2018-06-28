@@ -6,6 +6,12 @@ $(document).ready(function() {
 
     $("#cidades").attr("disabled", "disable");
     $("#estados").attr("disabled", "disable");
+    $('#validaNome').hide();
+    $('#validaIdade').hide();
+    $('#validaCpf').hide();
+    $('#validaCadjus').hide();
+    $('#validaSenha').hide();
+    $('#validaEmail').hide();
 
     buscaCandidato();
 
@@ -32,10 +38,12 @@ $(document).ready(function() {
                 achou = true;
             }
         });
-        if (achou) { //mensagem de erro e redireciona para a pagina principal
-            // console.log("achou o cara");
+        if (achou) {
+
         } else {
-            // console.log("nao achou o cara");
+            alert("O candidato não foi encontrado. Tente novamente mais tarde");
+            var novaURL = "index.html";
+            $(window.document.location).attr('href', novaURL);
         }
     }
 
@@ -48,19 +56,27 @@ $(document).ready(function() {
         $("#nome").val(candidato.nome);
         $("#cpf").val(candidato.cpf);
         $("#datanasc").val(candidato.datanasc);
-        $("input[name='sexo']:checked").val('f'); //como preencher isso??
-        // $("#estados option[value='São Paulo']").attr('selected', 'selected'); //na hora de salvar, salva com o id ou nome do estado?
-        // $("#cidades").val("Campinas"); //preencher com as cidades do estado selecionado e selecionar o do candidato
+        $(function() {
+            var $radios = $('input:radio[name=sexo]');
+            var sexo = candidato.sexo;
+            if (sexo === 'f') {
+                $radios.filter('[value=f]').prop('checked', true);
+            } else {
+                $radios.filter('[value=m]').prop('checked', true);
+            }
+        });
+        $("#estados").val(candidato.estado);
+        $("#cidades").val(candidato.cidade);
         $("#rua").val(candidato.rua);
         $("#numero").val(candidato.numero);
         $("#cadjus").val(candidato.cadjus);
         $("#email").val(candidato.email);
         $("#senha").val(candidato.senha);
+        $("#senha2").val(candidato.senha);
     }
 
 
     function buscarEstados() {
-
         var requisicaoEstados = new XMLHttpRequest();
         var tipo = 'GET';
         var assincrona = true;
@@ -124,12 +140,12 @@ $(document).ready(function() {
     }
 
     function editar(id) {
-
         var candidato = {
+            idcandidato: id,
             nome: '',
+            sexo: '',
             cpf: '',
             datanasc: '',
-            sexo: '',
             estado: '',
             cidade: '',
             rua: '',
@@ -139,30 +155,172 @@ $(document).ready(function() {
             senha: ''
         };
         candidato.nome = $("#nome").val();
-        candidato.cpf = $("#cpf").val();
-        candidato.datanasc = $("#datanasc").val();
         candidato.sexo = $("input[name='sexo']:checked").val();
-        candidato.estado = $("#estado").val();
-        candidato.cidade = $("#cidade").val();
+        candidato.email = $("#email").val();
+        candidato.senha = $("#senha").val();
+        candidato.datanasc = $("#datanasc").val();
+        candidato.estado = $("#estados").val();
+        candidato.cidade = $("#cidades").val();
         candidato.rua = $("#rua").val();
         candidato.numero = $("#numero").val();
         candidato.cadjus = $("#cadjus").val();
-        candidato.email = $("#email").val();
-        candidato.senha = $("#senha").val();
+        candidato.cpf = $("#cpf").val();
 
-        var string = "nome=" + candidato.nome + ", cpf=" + candidato.cpf + ", datanasc=" + candidato.datanasc + ", sexo=" + candidato.sexo + ", estado=" + candidato.estado + ", cidade=" + candidato.cidade + ", rua=" + candidato.rua + ", numero=" + candidato.numero + ", cadjus=" + candidato.cadjus + ", email=" + candidato.email + ", senha=" + candidato.senha;
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://andrebordignon.esy.es/php/atualizacandidato.php=" + id, true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(string);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.responseText);
-                abrirModal("O candidato foi alterado com sucesso");
-            } else {
-                console.log(xhr.responseText);
-                abrirModal("A atualização não pôde ser completada, tente novamente mais tarde");
-            }
-        }
+        console.log("teste candidato =", candidato);
+
+        var string = { "nome": "asddsa", "sexo": "m", "datanasc": "1998-07-25", "rua": "asd", "numero": "123", "cidade": "Acrelndia", "estado": "AC", "cpf": "90932061095", "cadjus": "2443", "email": "asd", "senha": "asd" };
+
+        var string2 = candidato;
+
+        $.ajax({
+                url: "http://andrebordignon.esy.es/php/incluicandidato.php",
+                type: 'post',
+                data: {
+                    nome: candidato.nome,
+                    email: candidato.email,
+                    senha: candidato.senha,
+                    cadjus: candidato.cadjus,
+                    cidade: candidato.cidade,
+                    estado: candidato.estado,
+                    cpf: candidato.cpf,
+                    numero: candidato.numero,
+                    rua: candidato.rua,
+                    sexo: candidato.sexo,
+                    dataNasc: candidato.datanasc
+                },
+                beforeSend: function() {
+                    console.log("Enviando dados...");
+                }
+            })
+            .done(function() {
+                console.log("Dados enviados com sucesso!");
+            })
+            .fail(function(jqXHR) {
+                console.log("Os dados não foram enviados!");
+            });
+
     }
 });
+
+// Importar em outro arquivo JS para nao ter que copiar e colar as mesmas funcoes
+
+function validaCpf() {
+
+    var cpf = $('#cpf').val();
+    if (!validar(cpf)) {
+        $('#validaCpf').show();
+        return false;
+    } else {
+        $('#validaCpf').hide();
+        return true;
+    }
+
+    function validar(strCPF) {
+        var Soma;
+        var Resto;
+        Soma = 0;
+        if (strCPF == "00000000000") return false;
+
+        for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+        return true;
+    }
+
+}
+
+function validaNome() {
+    var varNome = $('#nome').val();
+    if (varNome.length > 255 || varNome.length <= 0) {
+        $('#validaNome').show();
+        return false;
+    } else {
+        $('#validaNome').hide();
+        return true;
+    }
+}
+
+function validaSenha(temSenha1, temSenha2) {
+    if ((temSenha1) && (temSenha2)) {
+        var senha1 = $('#senha').val();
+        var senha2 = $('#senha2').val();
+
+        if (senha1 == senha2) {
+            $('#validaSenha').hide();
+            return true;
+        } else {
+            $('#validaSenha').show();
+            return false;
+        }
+    }
+}
+
+function validaIdade() {
+    var valorData = $('#datanasc').val();
+    if (valorData == '') {
+        $('#validaIdade').text("Data de Nascimento é obrigatório!");
+        $('#validaIdade').show();
+        return false;
+    } else {
+        var dataNasc = new Date(valorData);
+        var hoje = new Date();
+        var anoNasc = new Date(hoje - dataNasc);
+        var idade = anoNasc.getUTCFullYear() - 1970;
+
+        if (idade < 18) {
+            $('#validaIdade').text("O Candidato deve ter no mínimo 18 anos!");
+            $('#validaIdade').show();
+            return false;
+        } else if (idade > 125) {
+            $('#validaIdade').text("Digite uma data válida!");
+            $('#validaIdade').show();
+            return false;
+        } else {
+            $('#validaIdade').hide();
+            return true;
+        }
+    }
+}
+
+function validarCadjus() {
+    var valorCadjus = $('#cadjus').val();
+    if (valorCadjus < 1 || valorCadjus > 5000) {
+        $('#validaCadjus').text('CadJus deve ser um número entre 1 e 5000!');
+        $('#validaCadjus').show();
+        return false;
+    } else {
+        $('#validaCadjus').hide();
+        return true;
+    }
+}
+
+function validaEmail() {
+    var mail = $('#email').val();
+    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+    if (typeof(mail) == "string") {
+        if (er.test(mail)) {
+            console.log("true")
+            $('#validaEmail').hide();
+            return true;
+        }
+    } else if (typeof(mail) == "object") {
+        if (er.test(mail.value)) {
+            console.log("true")
+            $('#validaEmail').hide();
+            return true;
+        }
+    } else {
+        // $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
+        $('#validaEmail').show();
+        return false;
+    }
+}

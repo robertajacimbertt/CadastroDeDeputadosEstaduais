@@ -26,6 +26,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Página Inicial</a>
@@ -62,14 +63,19 @@
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome">
+            <label id="validaNome" class="validacao">Nome deve conter de 0 a 255 caracteres!</label>
         </div>
         <div class="form-group">
             <label for="cpf">CPF</label>
             <input type="text" class="form-control" id="cpf">
+            <div id="validaCpf">
+                <label class="validacao">Cpf inválido. Digite novamente sem traço ou ponto, somente números</label>
+            </div>
         </div>
         <div class="form-group">
             <label for="datanasc">Data de Nascimento</label>
-            <input type="date" class="form-control" id="datanasc">
+            <input type="date" class="form-control" id="datanasc" maxlength="8">
+            <label id="validaIdade" class="validacao"> </label>
         </div>
         <div class="form-group">
             <label>Sexo</label><br>
@@ -106,7 +112,8 @@
         <hr>
         <div class="form-group">
             <label for="cadjus">CADJUS</label>
-            <input type="text" class="form-control" id="cadjus">
+            <input type="number" class="form-control" id="cadjus">
+            <label id="validaCadjus" class="validacao"> </label>
         </div>
     </div>
     <div id="secao2">
@@ -114,12 +121,19 @@
         <hr>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <input type="email" class="form-control" aria-describedby="email" id="email">
+            <label id="validaEmail" class="validacao">Email inválido </label>
         </div>
         <div class="form-group">
             <label for="senha">Senha</label>
             <input type="password" class="form-control" id="senha">
+        </div>
+        <div class="form-group">
+            <label for="senha2">Confirme a senha</label>
+            <input type="password" class="form-control" id="senha2">
+            <div id="validaSenha">
+                <label class="validacao">As senhas não são iguais.</label>
+            </div>
         </div>
     </div>
     <div id="secao3">
