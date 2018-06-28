@@ -168,14 +168,11 @@ $(document).ready(function() {
 
         console.log("teste candidato =", candidato);
 
-        var string = { "nome": "asddsa", "sexo": "m", "datanasc": "1998-07-25", "rua": "asd", "numero": "123", "cidade": "Acrelndia", "estado": "AC", "cpf": "90932061095", "cadjus": "2443", "email": "asd", "senha": "asd" };
-
-        var string2 = candidato;
-
         $.ajax({
-                url: "http://andrebordignon.esy.es/php/incluicandidato.php",
+                url: " http://andrebordignon.esy.es/php/atualizacandidato.php",
                 type: 'post',
                 data: {
+                    idcandidato: candidato.idcandidato,
                     nome: candidato.nome,
                     email: candidato.email,
                     senha: candidato.senha,
