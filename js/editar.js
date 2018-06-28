@@ -16,7 +16,52 @@ $(document).ready(function() {
     buscaCandidato();
 
     $('#enviar').click(function() {
-        editar(id);
+        
+            var validado = -1;
+
+        if (validaNome()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaSenha()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaEmail()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaIdade()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validaCpf()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        if (validarCadjus()) {
+            validado = validado + 0;
+        }   else{
+            validado = validado + 1;
+        }
+
+        console.log("validado === "+validado);
+
+        if(validado==0){
+        editar(id);    
+        } else{
+            alert("Verifique os campos antes de submeter!");
+        }
     });
 
     $('#redirecionar').click(function() {
@@ -169,10 +214,9 @@ $(document).ready(function() {
         console.log("teste candidato =", candidato);
 
         $.ajax({
-                url: " http://andrebordignon.esy.es/php/atualizacandidato.php",
+                url: "http://andrebordignon.esy.es/php/incluicandidato.php",
                 type: 'post',
                 data: {
-                    idcandidato: candidato.idcandidato,
                     nome: candidato.nome,
                     email: candidato.email,
                     senha: candidato.senha,
@@ -190,10 +234,11 @@ $(document).ready(function() {
                 }
             })
             .done(function() {
-                console.log("Dados enviados com sucesso!");
+                alert("Dados enviados com sucesso!");
+
             })
             .fail(function(jqXHR) {
-                console.log("Os dados não foram enviados!");
+                alert("Ocorreu um erro e os dados não foram enviados, por favor, tente mais tarde.");
             });
 
     }

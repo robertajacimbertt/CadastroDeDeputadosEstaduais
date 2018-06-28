@@ -217,3 +217,7 @@
         font-size: 16px;
         font-family: arial;
     }
+
+    .card-body{
+        cursor: pointer;
+    }
