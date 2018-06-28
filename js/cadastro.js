@@ -61,8 +61,12 @@ $(document).ready(function() {
     buscar();
 
     $('#enviar').click(function(event) {
-
-        cadastrar();
+        if((validaSenha()) && (validaEmail()) && (validaIdade()) && (validaCpf()) && (validaNome()) && (validarCadjus())){
+            console.log("dsijsdj");
+        cadastrar();    
+        } else{
+            alert("Verifique os campos antes de submeter!");
+        }
 
     });
 
@@ -339,7 +343,6 @@ function validarCadjus() {
 }
 
 function validaEmail() {
-    console.log("champu")
     var mail = $('#email').val();
     var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
     if (typeof(mail) == "string") {
@@ -356,10 +359,8 @@ function validaEmail() {
         }
     } else {
         // $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
-        console.log("false")
         $('#validaEmail').show();
         return false;
-
     }
 }
 
