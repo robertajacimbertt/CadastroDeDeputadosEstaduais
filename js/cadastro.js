@@ -11,6 +11,8 @@ $(document).ready(function() {
     $('#validaCpf').hide();
     $('#validaCadjus').hide();
     $('#validaSenha').hide();
+    $('#validaEmail').hide();
+
     $('#nome').focusout(function() {
         validaNome();
     });
@@ -28,7 +30,9 @@ $(document).ready(function() {
     });
 
     $('#email').focusout(function() {
-        validaEmail();
+        if (!validaEmail()) {
+            $('#validaEmail').show();
+        }
     });
 
 
@@ -89,36 +93,37 @@ $(document).ready(function() {
         candidato.cpf = $("#cpf").val();
 
         console.log("teste candidato =", candidato);
-        
-        var string = { "nome": "asddsa", "sexo": "m", "datanasc": "1998-07-25", "rua": "asd", "numero": "123", "cidade": "Acrelndia", "estado": "AC", "cpf": "90932061095", "cadjus": "2443", "email": "asd", "senha": "asd"};
+
+        var string = { "nome": "asddsa", "sexo": "m", "datanasc": "1998-07-25", "rua": "asd", "numero": "123", "cidade": "Acrelndia", "estado": "AC", "cpf": "90932061095", "cadjus": "2443", "email": "asd", "senha": "asd" };
 
         var string2 = candidato;
 
         $.ajax({
-            url: "http://andrebordignon.esy.es/php/incluicandidato.php",
-            type: 'post',
-            data: {
-            nome: candidato.nome,
-            email: candidato.email,
-            senha : candidato.senha,
-            cadjus: candidato.cadjus,
-            cidade: candidato.cidade,
-            estado: candidato.estado,
-            cpf: candidato.cpf,
-            numero: candidato.numero,
-            rua: candidato.rua,
-            sexo: candidato.sexo,
-            dataNasc: candidato.datanasc
-            },beforeSend:function(){
-                console.log("Enviando dados...");
+                url: "http://andrebordignon.esy.es/php/incluicandidato.php",
+                type: 'post',
+                data: {
+                    nome: candidato.nome,
+                    email: candidato.email,
+                    senha: candidato.senha,
+                    cadjus: candidato.cadjus,
+                    cidade: candidato.cidade,
+                    estado: candidato.estado,
+                    cpf: candidato.cpf,
+                    numero: candidato.numero,
+                    rua: candidato.rua,
+                    sexo: candidato.sexo,
+                    dataNasc: candidato.datanasc
+                },
+                beforeSend: function() {
+                    console.log("Enviando dados...");
                 }
             })
             .done(function() {
-            console.log("Dados enviados com sucesso!");
+                console.log("Dados enviados com sucesso!");
             })
             .fail(function(jqXHR) {
-            console.log("Os dados não foram enviados!");
-        });
+                console.log("Os dados não foram enviados!");
+            });
 
 
         // var xhr = new XMLHttpRequest();
@@ -321,12 +326,12 @@ function validaIdade() {
     }
 }
 
-function validarCadjus(){
+function validarCadjus() {
     var valorCadjus = $('#cadjus').val();
-    if (valorCadjus<1 || valorCadjus>5000) {
-       $('#validaCadjus').text('CadJus deve ser um número entre 1 e 5000!');
-       $('#validaCadjus').show();
-       return false;
+    if (valorCadjus < 1 || valorCadjus > 5000) {
+        $('#validaCadjus').text('CadJus deve ser um número entre 1 e 5000!');
+        $('#validaCadjus').show();
+        return false;
     } else {
         $('#validaCadjus').hide();
         return true;
@@ -334,25 +339,29 @@ function validarCadjus(){
 }
 
 function validaEmail() {
-var mail = $('#email').val();    
-var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);    
-if(typeof(mail) == "string"){   
-    if(er.test(mail)){ 
-        $('#validaEmail').hide();
-        return true; 
-    }   
-}else if(typeof(mail) == "object")
-{ if(er.test(mail.value))
-    { 
-       $('#validaEmail').hide();
-        return true; 
-    } 
-}else {  
-   $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
-         $('#validaEmail').show();
-    return false;  
+    console.log("champu")
+    var mail = $('#email').val();
+    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+    if (typeof(mail) == "string") {
+        if (er.test(mail)) {
+            console.log("true")
+            $('#validaEmail').hide();
+            return true;
+        }
+    } else if (typeof(mail) == "object") {
+        if (er.test(mail.value)) {
+            console.log("true")
+            $('#validaEmail').hide();
+            return true;
+        }
+    } else {
+        // $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
+        console.log("false")
+        $('#validaEmail').show();
+        return false;
 
- }}
+    }
+}
 
 // var email = $('#email').val();
 // var exclude = /[^@-.w]|^[_@.-]|[._-]{2}|[@.]{2}|(@)[^@]*1/;
