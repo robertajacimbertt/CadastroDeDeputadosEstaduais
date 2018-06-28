@@ -27,6 +27,10 @@ $(document).ready(function() {
         validarCadjus();
     });
 
+    $('#email').focusout(function() {
+        validaEmail();
+    });
+
 
     var temSenha1 = false,
         temSenha2 = false;
@@ -53,13 +57,12 @@ $(document).ready(function() {
     buscar();
 
     $('#enviar').click(function(event) {
-         console.log("chamou o clicar");
+
         cadastrar();
+
     });
 
     function cadastrar() {
-
-        console.log("chamou o cadastrar");
         var candidato = {
             nome: '',
             sexo: '',
@@ -281,7 +284,7 @@ function validaSenha(temSenha1, temSenha2) {
         var senha1 = $('#senha').val();
         var senha2 = $('#senha2').val();
 
-        if (senha1 === senha2) {
+        if (senha1 == senha2) {
             $('#validaSenha').hide();
             return true;
         } else {
@@ -329,3 +332,38 @@ function validarCadjus(){
         return true;
     }
 }
+
+function validaEmail() {
+var mail = $('#email').val();    
+var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);    
+if(typeof(mail) == "string"){   
+    if(er.test(mail)){ 
+        $('#validaEmail').hide();
+        return true; 
+    }   
+}else if(typeof(mail) == "object")
+{ if(er.test(mail.value))
+    { 
+       $('#validaEmail').hide();
+        return true; 
+    } 
+}else {  
+   $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
+         $('#validaEmail').show();
+    return false;  
+
+ }}
+
+// var email = $('#email').val();
+// var exclude = /[^@-.w]|^[_@.-]|[._-]{2}|[@.]{2}|(@)[^@]*1/;
+// var check = /@[w-]+./;
+// var checkend = /.[a-zA-Z]{2,3}$/;
+// if (((email.search(exclude) != -1) || (email.search(check)) == -1) || (email.search(checkend) == -1)) {
+//     $('#validaEmail').text('Insira um email valido! Ex: exemplo@mail.com');
+//        $('#validaEmail').show();
+//  return false; } 
+// else { 
+//     $('#validaEmail').hide();
+//     return true; 
+// }
+// }
